@@ -15,7 +15,7 @@ The purpose of this script is to be a more lightweight solution then to use prom
 
 # Installation.
 
-1. Download the script by following this link.
+1. Download the script by following [this link](https://raw.githubusercontent.com/MoserMichael/follow-kube-logs/master/follow-kube-logs.py)
 2. You can optionally install argument autocompletion for the bash shell by running the following command: ```  follow-kube-logs.py -b >>$HOME/.bashrc ```
 
 # help file of the script
