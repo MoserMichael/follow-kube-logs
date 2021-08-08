@@ -48,3 +48,7 @@ suport for bash autocompletion of command line arguments:
 2. For deployments: the deployment controller adjusts the set of running pods based on the pods labels; i am using the following jsonpath expression to extract the labels ``` kubectl -n NAMESPACE get deployment DEPLOYMENT_NAME -o jsonpath='{.spec.selector.matchLabels} ```
 3. Using the following command to list all the pods of a deployment, and to make a listing that includes the pod name and all of its containers; 
 ``` kubectl -n  NAMSPACE get pods -l POD_SELECTORS -o jsonpath="{range .items[*]}{' '}{.metadata.name}{range .spec.containers[*]}{' '}{.name}{end}{'\\n'}{end}" ```
+
+# Similar projects
+
+It turns out there is [Stern](https://github.com/wercker/stern) - but that one is dumping all logs to the same terminal.
