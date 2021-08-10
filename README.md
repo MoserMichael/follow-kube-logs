@@ -16,13 +16,13 @@ The purpose of this script is to be a more lightweight solution then to use prom
 
 Running ```./follow-kube-logs.y -n my-namespace -s my-statefull-set -d logdir``` will have the following effect.
 
-Follows all containers of all pods in statefull set '''my-statefull-set``` in namespace ```my-namespace```
+Follows all containers of all pods in statefull set ```my-statefull-set``` in namespace ```my-namespace```
 
 # Following the logs for all containers of a replica set
 
 Running ```./follow-kube-logs.y -n my-namespace -r my-replica-set -d logdir``` will have the following effect.
 
-Follows all containers of all pods in replicaset set '''my-replica-set``` in namespace ```my-namespace```
+Follows all containers of all pods in replicaset set ```my-replica-set``` in namespace ```my-namespace```
 
 # Installation.
 
