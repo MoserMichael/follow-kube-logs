@@ -3,14 +3,26 @@
 
 Running ```./follow-kube-logs.y -n my-namespace -p my-deployment -d logdir``` will have the following effect.
 
-1. Will create directory logdir, 
-2. It will create a subdirectory in logdir for each pod running in the deployment my-deployment in namepace my-namespace 
+1. Will create directory ```logdir``` under the current directory 
+2. It will create a subdirectory in ```logdir``` for each pod running in the deployment ```my-deployment``` in namepace ```my-namespace``` - this directory has the name of the running pod and contains all the log files per followed container.
 3. Spawns a process that follows the logs of each of the containers for each pod of the deployment; this process gathers the logs for that container into a file in the log directory of the pod, while the script is running. 
 4. The script then waits and asks for the user to press enter, whereas it will kill the spawned processes and stop the logging.
-5. While the logging is proceeding: once a second the program scans the deployment for new pods and stopped pods. For new pods we also create a subdirectory with the name of the pod in logdir. A log file for each container will be created that follows the logs of the container.
+5. While the logging is proceeding: once a second the program scans the deployment for new pods and stopped pods. For new pods we also create a subdirectory with the name of the pod in ```logdir```. A log file for each container will be created that follows the logs of the container.
 6. Events like starting/stopping of a pod are displayed on standard output.
 
 The purpose of this script is to be a more lightweight solution then to use prometheus/graphana for viewing your deployment logs, as it is sometimes easier to grep through the logs, as compared to writing elaborate prometheus queries. Also by following the logs for a set time period you will have all of them, and you will not have to deal with log rotation.
+
+# Following the logs for all containers of a statefull set
+
+Running ```./follow-kube-logs.y -n my-namespace -s my-statefull-set -d logdir``` will have the following effect.
+
+Follows all containers of all pods in statefull set '''my-statefull-set``` in namespace ```my-namespace```
+
+# Following the logs for all containers of a replica set
+
+Running ```./follow-kube-logs.y -n my-namespace -r my-replica-set -d logdir``` will have the following effect.
+
+Follows all containers of all pods in replicaset set '''my-replica-set``` in namespace ```my-namespace```
 
 # Installation.
 
@@ -57,16 +69,6 @@ suport for bash autocompletion of command line arguments:
   --kubectl KUBECMD, -k KUBECMD
                         optional: name of kubectl command (default: kubectl)
 ```
-
-# Example usage
-
-``` follow-kube-logs.py -n test_namespace -d test-deployment -o output-dir ```
-
-Follows all pods in deployment ```test-deployment``` in namespace ```test-namespace```, files are put into directory ```output-dir```. For each followed pod there is a sub directory with the name of the pod in ```output-dir```. The pod directory has log files per followed container, each one named CONTAINER_NAME.log
-
-``` follow-kube-logs.py -n test_namespace -s test-statefull-set -o output-dir ```
-
-Follows all pods in statefull set ```test-statefull-set``` in namespace ```test-namespace```, files are put into directory ```output-dir```. For each followed pod there is a sub directory with the name of the pod in ```output-dir```. The pod directory has log files per followed container, each one named CONTAINER_NAME.log
 
 
 # What I learned from this
