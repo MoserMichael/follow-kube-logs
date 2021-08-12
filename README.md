@@ -5,7 +5,7 @@ Running ```./follow-kube-logs.y -n my-namespace -p my-deployment -d logdir``` wi
 
 1. Will create directory ```logdir``` under the current directory 
 2. It will create a subdirectory in ```logdir``` for each pod running in the deployment ```my-deployment``` in namepace ```my-namespace``` - this directory has the name of the running pod and contains all the log files per followed container.
-3. Spawns a process that follows the logs of each of the containers for each pod of the deployment; this process gathers the logs for that container into a file in the log directory of the pod, while the script is running. 
+3. Get the label set that identifies the pods that are running in this deployment; spawns a process that follows the logs of each of the containers for each pod of the deployment; this process gathers the logs for that container into a file in the log directory of the pod, while the script is running. 
 4. The script then waits and asks for the user to press enter, whereas it will kill the spawned processes and stop the logging.
 5. While the logging is proceeding: once a second the program scans the deployment for new pods and stopped pods. For new pods we also create a subdirectory with the name of the pod in ```logdir```. A log file for each container will be created that follows the logs of the container.
 6. Events like starting/stopping of a pod are displayed on standard output.
@@ -16,13 +16,14 @@ The purpose of this script is to be a more lightweight solution then to use prom
 
 Running ```./follow-kube-logs.y -n my-namespace -s my-statefull-set -d logdir``` will have the following effect.
 
-Follows all containers of all pods in statefull set ```my-statefull-set``` in namespace ```my-namespace```
+Follows all containers of all pods in statefull set ```my-statefull-set``` in namespace ```my-namespace```, all this is done by the same process as described above.
 
 # Following the logs for all containers of a replica set
 
 Running ```./follow-kube-logs.y -n my-namespace -r my-replica-set -d logdir``` will have the following effect.
 
-Follows all containers of all pods in replicaset set ```my-replica-set``` in namespace ```my-namespace```
+Follows all containers of all pods in replicaset set ```my-replica-set``` in namespace ```my-namespace```, all this is done by the same process as described above.
+
 
 # Installation.
 
