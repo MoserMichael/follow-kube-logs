@@ -82,3 +82,5 @@ suport for bash autocompletion of command line arguments:
 # Similar projects
 
 It turns out there is [Stern](https://github.com/wercker/stern) - but that one is dumping all logs to the same terminal.
+
+Also, maybe i should have put some more effort into learning this prometheus query stuff, instead of writing this scripts; however right now it's enough for me, and it pays my bills ;-)
